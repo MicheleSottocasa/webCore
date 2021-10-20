@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.*;
 import java.io.IOException;
 
 public class Json {
+
     private static ObjectMapper myObjectMapper = defaultObjectMapper();
 
     private static ObjectMapper defaultObjectMapper() {
@@ -18,11 +19,11 @@ public class Json {
         return myObjectMapper.readTree(jsonSrc);
     }
 
-    public static <A> A fromJson(JsonNode node, Class <A> clazz) throws JsonProcessingException {
+    public static <A> A fromJson(JsonNode node , Class<A> clazz) throws JsonProcessingException {
         return myObjectMapper.treeToValue(node, clazz);
     }
 
-    public static JsonNode toJson(Object obj){
+    public static JsonNode toJson(Object obj) {
         return myObjectMapper.valueToTree(obj);
     }
 
@@ -34,9 +35,11 @@ public class Json {
         return generateJson(node, true);
     }
 
-    public static String generateJson(Object o, boolean pretty) throws JsonProcessingException {
+    private static String generateJson(Object o, boolean pretty) throws JsonProcessingException {
         ObjectWriter objectWriter = myObjectMapper.writer();
-        if(pretty) objectWriter = objectWriter.with(SerializationFeature.INDENT_OUTPUT);
+        if (pretty) {
+            objectWriter = objectWriter.with(SerializationFeature.INDENT_OUTPUT);
+        }
         return objectWriter.writeValueAsString(o);
     }
 }

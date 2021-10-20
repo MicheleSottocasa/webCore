@@ -7,7 +7,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ServerListenerThread extends Thread{
+public class ServerListenerThread extends Thread {
+
     private final static Logger LOGGER = LoggerFactory.getLogger(ServerListenerThread.class);
 
     private int port;
@@ -22,9 +23,10 @@ public class ServerListenerThread extends Thread{
 
     @Override
     public void run() {
+
         try {
 
-            while (serverSocket.isBound() && !serverSocket.isClosed()) {
+            while ( serverSocket.isBound() && !serverSocket.isClosed()) {
                 Socket socket = serverSocket.accept();
 
                 LOGGER.info(" * Connection accepted: " + socket.getInetAddress());
@@ -33,16 +35,16 @@ public class ServerListenerThread extends Thread{
                 workerThread.start();
 
             }
+
         } catch (IOException e) {
             LOGGER.error("Problem with setting socket", e);
         } finally {
-            if(serverSocket!=null) {
+            if (serverSocket!=null) {
                 try {
                     serverSocket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                } catch (IOException e) {}
             }
         }
+
     }
 }

@@ -1,6 +1,6 @@
 package com.webcore.http;
 
-public class HttpParsingException extends Exception{
+public class HttpParsingException extends Exception {
 
     private final HttpStatusCode errorCode;
 
