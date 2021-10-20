@@ -8,12 +8,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
-public class HttpConnectionWorkerThred extends Thread{
-    private final static Logger LOGGER = LoggerFactory.getLogger(ServerListenerThread.class);
-
+public class HttpConnectionWorkerThread extends Thread{
+    private final static Logger LOGGER = LoggerFactory.getLogger(HttpConnectionWorkerThread.class);
     private Socket socket;
 
-    public HttpConnectionWorkerThred(Socket socket){
+    public HttpConnectionWorkerThread(Socket socket){
         this.socket = socket;
     }
 
@@ -24,12 +23,6 @@ public class HttpConnectionWorkerThred extends Thread{
         try {
             inputStream = socket.getInputStream();
             outputStream = socket.getOutputStream();
-
-            int _byte;
-
-            while ((_byte = inputStream.read()) >= 0){
-                System.out.print((char) _byte);
-            }
 
             String html = "<html><head><title>Connected</title></head><body><p>You're connected</p></body></html>";
 

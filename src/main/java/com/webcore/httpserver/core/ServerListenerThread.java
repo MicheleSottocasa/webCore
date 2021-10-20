@@ -4,8 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -31,7 +29,7 @@ public class ServerListenerThread extends Thread{
 
                 LOGGER.info(" * Connection accepted: " + socket.getInetAddress());
 
-                HttpConnectionWorkerThred workerThread = new HttpConnectionWorkerThred(socket);
+                HttpConnectionWorkerThread workerThread = new HttpConnectionWorkerThread(socket);
                 workerThread.start();
 
             }
