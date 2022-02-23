@@ -1,2 +1,3 @@
 # webCore
-a fucking http server coded in Java (and a litle part in Json)
+an http server coded in Java (config are in Json),
+run it with a java IDE (main class is HttpServer.java)
